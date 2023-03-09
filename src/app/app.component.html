@@ -1,0 +1,24 @@
+<mat-toolbar>
+    <span>Administrador de escuela</span>
+    <span class="example-spacer"></span>
+    <a mat-button routerLink="cursos/agregarCursos" *ngIf="opcionesAdmin">Agregar cursos</a>
+    <a mat-button routerLink="cursos/listaCursos" *ngIf="opcionesAdmin || opcionesUser">Lista de cursos</a>
+    <a mat-button routerLink="alumnos/listaAlumnos" *ngIf="opcionesAdmin|| opcionesUser">Lista de alumnos</a>
+    <a mat-button routerLink="alumnos/agregarAlumnos" *ngIf="opcionesAdmin && opcionesUser">Agregar alumnos</a>
+    <a mat-button routerLink="inscripciones/inscripcionAlumno" *ngIf="opcionesAdmin || opcionesUser">Inscripciones</a>
+    <a mat-button routerLink="login" *ngIf="botonLogin">Login</a>
+    <a mat-button (click)="logout()" *ngIf="!botonLogin">Logout</a>
+</mat-toolbar>
+<mat-drawer-container class="parent">
+    <mat-drawer mode="side" opened>
+        <div class="content">
+            <h3>Contacto:</h3>
+            <a href="#">Facebook <i class="bi bi-facebook"></i></a><br>
+            <a href="#">Instagram <i class="bi bi-instagram"></i></a><br>
+            <a href="#">Twitter <i class="bi bi-twitter"></i></a>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

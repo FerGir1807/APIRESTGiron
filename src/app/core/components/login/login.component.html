@@ -1,0 +1,35 @@
+<div mat-dialog-content>
+    <form class="example-form" [formGroup]="formularioLogin">
+        <div class="row">
+            <div class="column">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="controles.email">
+                    <mat-error *ngIf="controles.email.errors?.['required'] && controles.email.dirty">
+                        El email es requerido
+                    </mat-error>
+                    <mat-error *ngIf="controles.email.errors?.['email']  && controles.email.dirty">
+                        El email es incorrecto
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="column">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"
+                        formControlName="password" required>
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-error *ngIf="controles.password.errors?.['required']  && controles.password.dirty">
+                        El password es requerido
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <button mat-raised-button color="primary" (click)="login()"
+                    [disabled]="formularioLogin.invalid">Enviar</button>
+            </div>
+        </div>
+    </form>
+</div>
